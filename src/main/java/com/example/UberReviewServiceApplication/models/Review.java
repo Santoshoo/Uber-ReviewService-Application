@@ -3,8 +3,11 @@ package com.example.UberReviewServiceApplication.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.context.event.EventListener;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.xml.crypto.Data;
 import java.util.Date;
@@ -18,6 +21,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Table(name="bookingreview")
 public class Review {
     @Id
@@ -38,7 +42,7 @@ public class Review {
 
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    @LastModifiedBy
+    @LastModifiedDate
     private Date updatedAt;
 
 
